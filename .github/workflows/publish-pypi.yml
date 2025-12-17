@@ -1,0 +1,36 @@
+name: Upload Python Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    environment: 
+      name: pypi
+      url: https://pypi.org/p/pyrokid-crx-clientm
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade build
+
+      - name: Build a binary wheel and a source tarball
+        run: python3 -m build
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: ./dist/
