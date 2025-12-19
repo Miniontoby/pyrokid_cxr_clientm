@@ -1,14 +1,14 @@
-# com.rokid.crx.client-m library for Python
+# com.rokid.cxr.client-m library for Python
 
-A python port of the com.rokid.crx.client-m Java library.
+A python port of the com.rokid.cxr.client-m Java library.
 
-The idea is to allow you to use the CRX-M SDK on any device with bluetooth.
+The idea is to allow you to use the CXR-M SDK on any device with bluetooth.
 
 Library supports Python 3.6+ (confirmed using `vermin`), for as far as Bleak supports.
 
 
 **This repo is NOT an official Rokid Glasses repo. We're not associated with Rokid.**
-*This is just a personal project to port CRX-M to python, so it can be used on any platform, instead of only phones with android 10+*
+*This is just a personal project to port CXR-M to python, so it can be used on any platform, instead of only phones with android 10+*
 
 
 ## Info
@@ -30,7 +30,7 @@ Consider giving me my time to work it out ;) Anyways, as always God bless and pe
 
 ## Setting up
 
-Install this library using `pip install pyrokid-crx-clientm`
+Install this library using `pip install pyrokid-cxr-clientm`
 
 
 ## API/Example
@@ -39,7 +39,7 @@ Here is an example code with comments to explain the API functions:
 
 ```py
 # Imports
-from pyrokid_crx_clientm.libcaps import Caps
+from pyrokid_cxr_clientm.libcaps import Caps
 
 # Decode bytes to a Caps object
 bytes_variable = b'\x00\x00\x00\x99\x05\x05SSSuu$xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\x11MA:C0:AD:DR:ES:SSTxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==\x01\x01'
@@ -63,4 +63,4 @@ print(data)
 ```
 
 
-Extra API documentation can be found on the [ReadTheDocs](https://pyrokid-crx-clientm.readthedocs.io/en/latest/) documentation.
+Extra API documentation can be found on the [ReadTheDocs](https://pyrokid-cxr-clientm.readthedocs.io/en/latest/) documentation.

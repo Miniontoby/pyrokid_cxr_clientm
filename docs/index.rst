@@ -1,24 +1,25 @@
-Welcome to pyrokid_crx_clientm documentation!
+Welcome to pyrokid_cxr_clientm documentation!
 =============================================
 
-com.rokid.crx.client-m library for Python
+com.rokid.cxr.client-m library for Python
 
-A python port of the com.rokid.crx.client-m Java library.
+A python port of the com.rokid.cxr.client-m Java library.
 
-The idea is to allow you to use the CRX-M SDK on any device with bluetooth.
+The idea is to allow you to use the CXR-M SDK on any device with bluetooth.
 
 .. toctree::
    :maxdepth: 3
    :caption: Contents:
 
-   source/pyrokid_crx_clientm/index
-   source/pyrokid_crx_clientm/libcaps
+   source/pyrokid_cxr_clientm/index
+   source/pyrokid_cxr_clientm/libcaps
+   source/pyrokid_cxr_clientm/libcxr_sock_proto_jni
 
 .. toctree::
    :caption: Links:
 
-   Source <https://github.com/Miniontoby/pyrokid_crx_clientm>
-   Project on PyPi <https://pypi.org/project/pyrokid-crx-clientm/>
+   Source <https://github.com/Miniontoby/pyrokid_cxr_clientm>
+   Project on PyPi <https://pypi.org/project/pyrokid-cxr-clientm/>
 
 Indices and tables
 ==================

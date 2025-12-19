@@ -4,7 +4,7 @@ import sys
 sys.path.insert(0, os.path.abspath('../src'))
 
 # -- Project information -------------------------------
-project = 'pyrokid_crx_clientm'
+project = 'pyrokid_cxr_clientm'
 copyright = '2025, Miniontoby'
 author = 'Miniontoby'
 

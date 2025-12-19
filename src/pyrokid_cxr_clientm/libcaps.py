@@ -1,5 +1,5 @@
 """
-com.rokid.crx.client-m:1.0.4 - jni/arm64-v8a/libcaps.so library in Python
+com.rokid.cxr.client-m:1.0.4 - jni/arm64-v8a/libcaps.so library in Python
 
 Caps class is THE way to decode and encode packets when communicating to the Rokid Glasses.
 

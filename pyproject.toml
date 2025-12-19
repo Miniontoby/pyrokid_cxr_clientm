@@ -3,15 +3,15 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pyrokid_crx_clientm"
+name = "pyrokid_cxr_clientm"
 version = "0.0.1"
 authors = [
   { name="Miniontoby", email="author@example.com" },
 ]
-description = "A python port of the com.rokid.crx.client-m Java library."
+description = "A python port of the com.rokid.cxr.client-m Java library."
 readme = "README.md"
 requires-python = ">=3.6"
-keywords = ["rokid", "crx", "client-m", "glasses", "rokid glasses", "com.rokid.crx.client-m"]
+keywords = ["rokid", "cxr", "client-m", "glasses", "rokid glasses", "com.rokid.cxr.client-m"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -27,7 +27,7 @@ classifiers = [
 dependencies = ["bleak"]
 
 [project.urls]
-Homepage = "https://github.com/Miniontoby/pyrokid_crx_clientm"
-Documentation = "https://pyrokid-crx-clientm.readthedocs.io/en/latest/"
-Repository = "https://github.com/Miniontoby/pyrokid_crx_clientm.git"
-"Bug Tracker" = "https://github.com/Miniontoby/pyrokid_crx_clientm/issues"
+Homepage = "https://github.com/Miniontoby/pyrokid_cxr_clientm"
+Documentation = "https://pyrokid-cxr-clientm.readthedocs.io/en/latest/"
+Repository = "https://github.com/Miniontoby/pyrokid_cxr_clientm.git"
+"Bug Tracker" = "https://github.com/Miniontoby/pyrokid_cxr_clientm/issues"
