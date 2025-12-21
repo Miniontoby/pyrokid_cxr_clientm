@@ -14,6 +14,12 @@ The idea is to allow you to use the CXR-M SDK on any device with bluetooth.
    source/pyrokid_cxr_clientm/index
    source/pyrokid_cxr_clientm/libcaps
    source/pyrokid_cxr_clientm/libcxr_sock_proto_jni
+   source/pyrokid_cxr_clientm/extend/infos/glass_info
+   source/pyrokid_cxr_clientm/extend/infos/icon_info
+   source/pyrokid_cxr_clientm/extend/infos/rk_app_info
+   source/pyrokid_cxr_clientm/extend/infos/rk_wifi_info
+   source/pyrokid_cxr_clientm/extend/infos/scene_status_info
+   source/pyrokid_cxr_clientm/extend/infos/schedule_info
 
 .. toctree::
    :caption: Links:

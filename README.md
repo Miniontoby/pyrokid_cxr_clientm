@@ -21,7 +21,7 @@ then you could make an issue if there isn't one for your display yet.
 
 ## Current Status
 
-Currently as of v0.0.1-alpha, only the libcaps.so library is ported.
+Currently as of v0.0.3a0, only the libcaps.so library is ported.
 
 I already have more code, which connects to the glasses and then already allows me to read events,
 but it's not perfect and is just unusable at the moment. I'm still decompiling and developing the rest.
@@ -43,23 +43,22 @@ from pyrokid_cxr_clientm.libcaps import Caps
 
 # Decode bytes to a Caps object
 bytes_variable = b'\x00\x00\x00\x99\x05\x05SSSuu$xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\x11MA:C0:AD:DR:ES:SSTxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==\x01\x01'
-caps = Caps.from_bytes(bytes_variable)
+caps = Caps.fromBytes(bytes_variable)
 print(caps)
-print('socketUuid:', caps[0].get_string())
-print('macAddress:', caps[1].get_string())
-print('rokidAccount:', caps[2].get_string())
-print('glassesType:', caps[3].get_uint()) # 0-no display, 1-have display
+print('socketUuid:', caps.at(0).getString())
+print('macAddress:', caps.at(1).getString())
+print('rokidAccount:', caps.at(2).getString())
+print('glassesType:', caps.at(3).getUInt32()) # 0-no display, 1-have display
 
 # Encode Caps object to bytes
 caps = Caps()
-caps.write_uint(0x1004)
-caps.write_uint(1)
-caps.write_uint(5)
+caps.writeUInt32(0x1004)
+caps.writeUInt32(1)
+caps.writeUInt32(5)
 caps.write('TestDevice')
-caps.write_ulong(1765983621057)
+caps.writeUInt64(1765983621057)
 data = caps.serialize()
 print(data)
-
 ```
 
 
