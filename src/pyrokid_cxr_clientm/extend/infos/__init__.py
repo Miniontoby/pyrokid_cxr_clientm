@@ -1,4 +1,4 @@
-__all__ = ['glass_info', 'icon_info', 'rk_app_info', 'rk_wifi_info', 'scene_status_info', 'schedule_info']
+__all__ = ['GlassInfo', 'IconInfo', 'RKAppInfo', 'RKWifiInfo', 'SceneStatusInfo', 'ScheduleInfo']
 
 from .glass_info import GlassInfo
 from .icon_info import IconInfo

@@ -37,3 +37,7 @@ class GlassInfo:
 	"""The version code of the assistant"""
 	systemVersion: str
 	"""The version of the system"""
+	displayWidth: int = 481
+	"""The width of the display"""
+	displayHeight: int = 640
+	"""The height of the display"""
