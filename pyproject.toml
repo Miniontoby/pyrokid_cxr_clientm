@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyrokid_cxr_clientm"
-version = "0.0.4a0"
+version = "0.0.4a1"
 authors = [
   { name="Miniontoby", email="author@example.com" },
 ]
@@ -23,7 +23,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
 ]
-dependencies = ["bleak", 'pybluez;python_version<"3.9"', "tzlocal", "pycryptodome"]
+dependencies = ["bleak", 'pybluez;python_version<"3.9"', "tzlocal", "pycryptodome", "requests", "dataclasses_json"]
 
 [project.urls]
 Homepage = "https://github.com/Miniontoby/pyrokid_cxr_clientm"

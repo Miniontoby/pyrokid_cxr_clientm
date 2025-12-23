@@ -12,7 +12,11 @@ The idea is to allow you to use the CXR-M SDK on any device with bluetooth.
    :caption: Contents:
 
    source/pyrokid_cxr_clientm/index
+   source/pyrokid_cxr_clientm/extend/callbacks
    source/pyrokid_cxr_clientm/extend/infos
+   source/pyrokid_cxr_clientm/extend/listeners
+   source/pyrokid_cxr_clientm/extend/version
+   source/pyrokid_cxr_clientm/extend/sync
    source/pyrokid_cxr_clientm/utils
 
 .. toctree::
