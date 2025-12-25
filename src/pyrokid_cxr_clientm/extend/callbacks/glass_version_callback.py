@@ -1,3 +1,3 @@
 class GlassVersionCallback:
 	"""GlassVersionCallback Interface - Please extend this class and implement the methods"""
-	def onGlassVersion(self, paramBoolean: bool, paramString: str) -> None: pass
+	def onGlassVersion(self, success: bool, version: str) -> None: pass

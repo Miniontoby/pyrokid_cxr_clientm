@@ -13,11 +13,13 @@ class RetrofitClient:
 		LogUtil.v("RetrofitClient", "getInstance")
 		return _a.a
 
-	def createPartFromString(self, paramString: str):
+	@staticmethod
+	def createPartFromString(paramString: str):
 		LogUtil.i("RetrofitClient", "createPartFromString")
 		return paramString
 
-	def createPartFromApk(self, paramFile: str):
+	@staticmethod
+	def createPartFromApk(paramFile: str):
 		LogUtil.i("RetrofitClient", "createPartFromApk")
 		return paramFile
 

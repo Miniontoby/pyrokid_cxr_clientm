@@ -5,4 +5,4 @@ class BluetoothStatusCallback:
 	def onConnectionInfo(self, socketUuid: str, macAddress: str, rokidAccount: str, glassesType: int) -> None: pass
 	def onConnected(self) -> None: pass
 	def onDisconnected(self) -> None: pass
-	def onFailed(self, paramCxrBluetoothErrorCode: ValueUtil.CxrBluetoothErrorCode) -> None: pass
+	def onFailed(self, errorCode: ValueUtil.CxrBluetoothErrorCode) -> None: pass

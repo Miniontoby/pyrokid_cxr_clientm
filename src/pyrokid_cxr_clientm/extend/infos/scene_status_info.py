@@ -1,5 +1,7 @@
 from dataclasses import dataclass
+from dataclasses_json import dataclass_json
 
+@dataclass_json
 @dataclass
 class SceneStatusInfo:
 	"""SceneStatusInfo"""
@@ -7,16 +9,24 @@ class SceneStatusInfo:
 	"""Is the aiAssist running?"""
 	aiChatRunning: bool
 	"""Is the aiChat running?"""
+	arPictureRunning: bool
+	"""Is the arPicture running?"""
 	audioRecordRunning: bool
 	"""Is the audioRecord running?"""
-	brightnessRunning: bool
-	"""Is the brightness running?"""
+	cityGuideRunning: bool
+	"""Is the cityGuide running?"""
+	customViewRunning: bool
+	"""Is the customView running?"""
 	hasDisplay: bool
 	"""Do we have a display?"""
+	liveBroadcastRunning: bool
+	"""Are we live broadcasting?"""
+	mixRecordRunning: bool
+	"""Is the mixRecord running?"""
+	musicWordRunning: bool
+	"""Is the musicWord running? I guess lyrics display"""
 	navigationRunning: bool
 	"""Is the navigation running?"""
-	notesRunning: bool
-	"""Is the notes running?"""
 	otaRunning: bool
 	"""Is the ota running?"""
 	paymentRunning: bool
@@ -29,5 +39,3 @@ class SceneStatusInfo:
 	"""Is the videoRecord running?"""
 	wordTipsRunning: bool
 	"""Is the wordTips running?"""
-	customViewRunning: bool
-	"""Is the customView running?"""
