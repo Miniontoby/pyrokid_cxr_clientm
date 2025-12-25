@@ -105,6 +105,30 @@ FileController.getInstance().i.t.join()
 
 *P.s. when downloading VIDEO files, you will also see .txt files show up. Those are used by the Hi Rokid app to do the post stabilisation*
 
+----
+
+To upload apk's to the glasses to sideload the apk, you can use this snippet to wirelessly (without dev cable) do that. (Again wifi needs to be ON for this to work)
+
+```py
+from pyrokid_cxr_clientm.extend.callbacks import ApkStatusCallback
+from pyrokid_cxr_clientm.extend.controllers import FileController
+import os, logging
+
+logging.basicConfig(level=logging.INFO)
+
+apkPath = 'org.fdroid.fdroid_1023050.apk' # path to the .apk on your computer
+address = '192.168.178.114' # Change this to the IP of your glasses. (I cannot really give an easy way to get the ip, except check your network before wifi is on and then after and see which is new)
+callback = ApkStatusCallback() # too lazy to implement these, you don't need them anyways. Logging will tell if it was successful
+
+FileController.getInstance().startUploadApk(apkPath, address, callback)
+# Now just wait, it is still running in the background!
+
+# You could do this to kinda let the thing still wait. Should be fine
+FileController.getInstance().r.t.join()
+```
+
+If everything went right, you should now see a new app at the very end of the apps screen.
+
 
 ## Extra API Documentation
 
