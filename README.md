@@ -47,6 +47,12 @@ But that doesn't stop me being transparent about the dependencies, so here's the
 - pycryptodome: A library for doing AES hashing, needed to do `CxrApi.checkGlassesSn()`, which will check if the clientSecret and license file are correct. *(altho this part is also edited to continue regardless of it being correct)*
 - requests: A library for performing a POST HTTP request for the `extend.version.check_util.CheckUtil` class. I could've used httplib, but requests is much easier to work with.
 - dataclasses_json: A library to make it easier to encode and decode dataclasses to and from JSON strings.
+- faster-whisper: For doing Speech to text
+- numpy: For doing stuff with arrays and shit. Mostly related to the speech to text.
+- soundfile: For doing stuff with ogg files
+- scipy: For resampling ogg files from 48k to 16k
+
+You can safely ignore the huggingface warning.
 
 
 ## API/Example

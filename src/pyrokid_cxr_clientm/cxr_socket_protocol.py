@@ -14,10 +14,15 @@ class PacketTypeIds(IntEnum):
 	AUTH_RESPONSE = 0x1005 # authResponse
 	ROKID_ACCOUNT_REQUEST = 0x1006 # changeRokidAccount
 
-	# These I don't know yet.
-	TRANSFER_INFO = 0x2001
-	TRANSFER_INFO_TWO = 0x2002
-	TRANSFER_INFO_THREE = 0x2003
+	# Binary transfer related. Ai_TakePhoto for example
+	TRANSFER_START = 0x2001
+	TRANSFER_DATA = 0x2002
+	TRANSFER_END = 0x2003
+
+	# ARTC video frames
+	ARTC_START = 0x2011
+	ARTC_DATA = 0x2012
+	ARTC_END = 0x2013
 
 	# I am NOT sure about these values!
 	AI_START = 0x3001

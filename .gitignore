@@ -198,3 +198,4 @@ upload.sh
 upload.bat
 docs/build.sh
 /makedocs.bat
+/extra
