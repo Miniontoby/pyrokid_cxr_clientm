@@ -1,3 +1,8 @@
+"""
+com.rokid.cxr.client-m:1.0.4 - extend/infos/ in Python
+
+extend.infos namespaces contains :class:`GlassInfo`, :class:`IconInfo`, :class:`RKAppInfo`, :class:`RKWifiInfo`, :class:`SceneStatusInfo` and :class:`ScheduleInfo`
+"""
 __all__ = ['GlassInfo', 'IconInfo', 'RKAppInfo', 'RKWifiInfo', 'SceneStatusInfo', 'ScheduleInfo']
 
 from .glass_info import GlassInfo

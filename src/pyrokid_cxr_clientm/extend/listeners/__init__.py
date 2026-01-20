@@ -1,3 +1,8 @@
+"""
+com.rokid.cxr.client-m:1.0.4 - extend/listeners/ in Python
+
+extend.listeners namespaces contains :class:`AiEventListener`, :class:`ArtcListener`, :class:`AudioStreamListener`, :class:`BatteryLevelUpdateListener`, :class:`BrightnessUpdateListener`, :class:`CustomCmdListener`, :class:`CustomViewListener`, :class:`MediaFilesUpdateListener`, :class:`SceneStatusUpdateListener`, :class:`ScreenStatusUpdateListener`, :class:`TranslationListener` and :class:`VolumeUpdateListener`
+"""
 __all__ = ['AiEventListener', 'ArtcListener', 'AudioStreamListener', 'BatteryLevelUpdateListener', 'BrightnessUpdateListener', 'CustomCmdListener', 'CustomViewListener', 'MediaFilesUpdateListener', 'SceneStatusUpdateListener', 'ScreenStatusUpdateListener', 'TranslationListener', 'VolumeUpdateListener']
 
 from .ai_event_listener import AiEventListener

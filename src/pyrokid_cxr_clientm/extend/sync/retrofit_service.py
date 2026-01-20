@@ -1,17 +1,20 @@
-from __future__ import annotations
-from requests import Session, Response
+"""
+com.rokid.cxr.client-m:1.0.4 - extend/sync/RetrofitService.java in Python
+
+RetrofitService class is an attempt to recreate the code that Retrofit2 library would generate.
+I know this looks ugly and stupid, but it kinda has to be.
+"""
+
+from requests import Session
 from threading import Thread
-from .base_network_response import BaseNetworkResponse
-from .file_list_response import FileListResponse
-from .header_interceptor import HeaderInterceptor
 
 class RetrofitService:
-	def __init__(self, baseUrl: str, headers):
+	def __init__(self, baseUrl: str, headers: dict[str, str]):
 		self.baseUrl = baseUrl
 		self.s = Session()
 		self.s.headers = { **self.s.headers, **headers }
 
-	def getFileList(self, filePath: str) -> FileListResponse:
+	def getFileList(self, filePath: str):
 		'''
 		@Multipart
 		@POST("/server/openFileList")
@@ -35,7 +38,7 @@ class RetrofitService:
 				return
 		return Call()
 
-	def reportDownload(self, filePath: str) -> Response:
+	def reportDownload(self, filePath: str):
 		'''
 		@Multipart
 		@POST("/server/reportDownload")
@@ -46,14 +49,14 @@ class RetrofitService:
 			def enqueue(self, callback):
 				try:
 					r = this.s.post(this.baseUrl + "/server/reportDownload", data={'filePath': filePath})
-					callback.onResponse(self, BaseNetworkResponse.from_json(r.text))
+					callback.onResponse(self, r)
 				except Exception as exception:
 					callback.onFailure(self, exception)
 			def cancel(self):
 				return
 		return Call()
 
-	def downloadFile(self, filePath: str) -> Response:
+	def downloadFile(self, filePath: str):
 		'''
 		@Multipart
 		@Streaming
@@ -78,7 +81,7 @@ class RetrofitService:
 				return
 		return Call()
 	
-	def deleteFile(self, filePath: str) -> Response:
+	def deleteFile(self, filePath: str):
 		'''
 		@Multipart
 		@POST("/server/deleteFile")
@@ -100,7 +103,7 @@ class RetrofitService:
 				return
 		return Call()
 	
-	def uploadFile(self, paramPart: tuple[str, str, str]) -> Response:
+	def uploadFile(self, paramPart: tuple[str, str, str]):
 		'''
 		@Multipart
 		@POST("/server/upload")
@@ -118,7 +121,7 @@ class RetrofitService:
 					with open(filePath, 'rb') as f:
 						files = {partName: (str(filePath).split('/')[-1], f, dataType)}
 						r = this.s.post(this.baseUrl + "/server/upload", files=files)
-						callback.onResponse(self, BaseNetworkResponse.from_json(r.text))
+						callback.onResponse(self, r)
 				except Exception as exception:
 					callback.onFailure(self, exception)
 			def cancel(self):

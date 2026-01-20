@@ -1,10 +1,12 @@
-from dataclasses import dataclass
-from dataclasses_json import dataclass_json
+"""com.rokid.cxr.client-m:1.0.4 - extend/infos/GlassInfo.java in Python"""
 
-@dataclass_json
+from dataclasses import dataclass
+from dataclasses_json import dataclass_json, Undefined
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclass
 class GlassInfo:
-	"""GlassInfo"""
+	"""com.rokid.cxr.client.extend.infos.GlassInfo Java class to Python"""
 	deviceName: str
 	"""The name of the device"""
 	batteryLevel: int

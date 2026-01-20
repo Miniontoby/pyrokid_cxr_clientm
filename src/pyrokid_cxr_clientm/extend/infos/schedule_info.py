@@ -1,10 +1,12 @@
+"""com.rokid.cxr.client-m:1.0.4 - extend/infos/ScheduleInfo.java in Python"""
+
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 
 @dataclass_json
 @dataclass
 class ScheduleInfo:
-	"""ScheduleInfo"""
+	"""com.rokid.cxr.client.extend.infos.ScheduleInfo Java class to Python"""
 	id: int
 	"""The id of the schedule"""
 	title: str = ""

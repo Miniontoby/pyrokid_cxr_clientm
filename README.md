@@ -21,11 +21,13 @@ then you could make an issue if there isn't one for your display yet.
 
 ## Current Status
 
-Currently as of v0.0.4a2, only the libcaps.so library is ported.
+Currently as of v0.0.4a4, only the libcaps.so library is ported.
 Other than that, also the `utils.LogUtil`, `utils.ValueUtil`, `extend.callbacks`, `extend.infos`, `extend.listeners`, `extend.version` and `extend.sync` have all been ported.
-Also `extend.controller.FileController` is finished and working. You just need to have wifi already enabled for you to use it already,
+Also `extend.controllers.FileController` is finished and working. You just need to have wifi already enabled for you to use it already,
 since I'm still working making the bluetooth connection more stable.
 The WifiController is coming soon, tho.
+
+I also added `customview` to the library which does NOT exist in the java SDK, but does allow you to make sure your CustomViews are valid JSON.
 
 I already have more code, which connects to the glasses and actually is able to send stuff to the glasses,
 but it's still not fully perfect. I'm still decompiling java and c code and still developing the rest.
@@ -92,7 +94,7 @@ print(data)
 To download files from your device, when the glasses are already connected to wifi (since I've not added the bluetooth controller yet), you can use this snippet:
 ```py
 from pyrokid_cxr_clientm.utils import ValueUtil
-from pyrokid_cxr_clientm.extend.controllers import FileController
+from pyrokid_cxr_clientm.extend.controllers import FileController, WifiController
 import os, logging
 
 logging.basicConfig(level=logging.INFO)
@@ -100,13 +102,26 @@ logging.basicConfig(level=logging.INFO)
 savePath = 'media/'
 os.makedirs(savePath, exist_ok=True) # Make the folder if it doesnt exist yet
 types = [ValueUtil.CxrMediaType.PICTURE] # Select the type of media you want to download, you can do [ValueUtil.CxrMediaType.ALL] if you want all media types
-address = '192.168.178.114' # Change this to the IP of your glasses. (I cannot really give an easy way to get the ip, except check your network before wifi is on and then after and see which is new)
-c1 = FileController.Callback()
-FileController.getInstance().startDownload(0, savePath, types, None, address, c1)
-# Now just wait, it is still running in the background!
 
-# You could do this to kinda let the thing still wait, but it's not a perfect way to do it.
-FileController.getInstance().i.t.join()
+class fileCallback(FileController.Callback):
+	def onDownloadStart(self) -> None:
+		print('Download Start')
+	def onSingleFileDownloaded(self, fileName: str) -> None:
+		print('Single File Downloaded', fileName)
+	def onDownloadFailed(self) -> None:
+		print('Download Failed!')
+	def onDownloadFinished(self) -> None:
+		print('Download Finished!')
+		quit()
+
+class wifiCallback(WifiController.Callback):
+	def onStatusUpdate(self, cxrStatus: ValueUtil.CxrStatus, cxrWifiErrorCode: ValueUtil.CxrWifiErrorCode) -> None: pass
+	def onAddress(self, address: str) -> None:
+		FileController.getInstance().startDownload(0, savePath, types, None, address, fileCallback())
+		# Now just wait, it is still running in the background!
+		FileController.getInstance().i.t.join()
+
+WifiController.getInstance().init(0, "", wifiCallback())
 ```
 
 *P.s. when downloading VIDEO files, you will also see .txt files show up. Those are used by the Hi Rokid app to do the post stabilisation*
@@ -116,21 +131,37 @@ FileController.getInstance().i.t.join()
 To upload apk's to the glasses to sideload the apk, you can use this snippet to wirelessly (without dev cable) do that. (Again wifi needs to be ON for this to work)
 
 ```py
+from pyrokid_cxr_clientm.utils import ValueUtil
 from pyrokid_cxr_clientm.extend.callbacks import ApkStatusCallback
-from pyrokid_cxr_clientm.extend.controllers import FileController
+from pyrokid_cxr_clientm.extend.controllers import FileController, WifiController
 import os, logging
 
 logging.basicConfig(level=logging.INFO)
-
 apkPath = 'org.fdroid.fdroid_1023050.apk' # path to the .apk on your computer
-address = '192.168.178.114' # Change this to the IP of your glasses. (I cannot really give an easy way to get the ip, except check your network before wifi is on and then after and see which is new)
-callback = ApkStatusCallback() # too lazy to implement these, you don't need them anyways. Logging will tell if it was successful
 
-FileController.getInstance().startUploadApk(apkPath, address, callback)
-# Now just wait, it is still running in the background!
+class apkStatusCallback(ApkStatusCallback):
+	def onUploadApkSucceed(self) -> None:
+		print('Upload Apk Succeed')
+		quit()
+	def onUploadApkFailed(self) -> None:
+		print('Upload Apk Failed')
+	def onInstallApkSucceed(self) -> None: pass # These ones won't trigger, cause you're not using Bluetooth!
+	def onInstallApkFailed(self) -> None: pass
+	def onUninstallApkSucceed(self) -> None: pass
+	def onUninstallApkFailed(self) -> None: pass
+	def onOpenAppSucceed(self) -> None: pass
+	def onOpenAppFailed(self) -> None: pass
 
-# You could do this to kinda let the thing still wait. Should be fine
-FileController.getInstance().r.t.join()
+class wifiCallback(WifiController.Callback):
+	def onStatusUpdate(self, cxrStatus: ValueUtil.CxrStatus, cxrWifiErrorCode: ValueUtil.CxrWifiErrorCode) -> None: pass
+	def onAddress(self, address: str) -> None:
+		FileController.getInstance().startUploadApk(apkPath, address, apkStatusCallback())
+		# Now just wait, it is still running in the background!
+
+		# You could do this to kinda let the thing still wait. Should be fine
+		FileController.getInstance().r.t.join()
+
+WifiController.getInstance().init(0, "", wifiCallback())
 ```
 
 If everything went right, you should now see a new app at the very end of the apps screen.

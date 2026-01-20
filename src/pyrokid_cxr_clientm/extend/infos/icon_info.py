@@ -1,10 +1,13 @@
+"""com.rokid.cxr.client-m:1.0.4 - extend/infos/InfoInfo.java in Python"""
+
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 
 @dataclass_json
 @dataclass
 class IconInfo:
-	"""
+	"""com.rokid.cxr.client.extend.infos.IconInfo Java class to Python
+
 	Icons should not exceed 128x128px.
 	It is recommended to not upload more than 10 icons to keep speed.
 	

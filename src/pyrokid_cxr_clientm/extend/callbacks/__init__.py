@@ -1,3 +1,9 @@
+"""
+com.rokid.cxr.client-m:1.0.4 - extend/callbacks/ in Python
+
+extend.callbacks namespaces contains :class:`ApkStatusCallback`, :class:`AudioSceneIdCallback`, :class:`BluetoothStatusCallback`, :class:`GlassInfoResultCallback`, :class:`GlassVersionCallback`, :class:`PhotoPathCallback`, :class:`PhotoResultCallback`, :class:`SendStatusCallback`, :class:`SyncStatusCallback`, :class:`UnsyncNumResultCallback`, :class:`WifiListCallback` and :class:`WifiP2PStatusCallback`
+"""
+
 __all__ = ['ApkStatusCallback', 'AudioSceneIdCallback', 'BluetoothStatusCallback', 'GlassInfoResultCallback', 'GlassVersionCallback', 'PhotoPathCallback', 'PhotoResultCallback', 'SendStatusCallback', 'SyncStatusCallback', 'UnsyncNumResultCallback', 'WifiListCallback', 'WifiP2PStatusCallback']
 
 from .apk_status_callback import ApkStatusCallback

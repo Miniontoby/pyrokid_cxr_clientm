@@ -1,10 +1,12 @@
-from dataclasses import dataclass
-from dataclasses_json import dataclass_json
+"""com.rokid.cxr.client-m:1.0.4 - extend/infos/SceneStatusInfo.java in Python"""
 
-@dataclass_json
+from dataclasses import dataclass
+from dataclasses_json import dataclass_json, Undefined
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclass
 class SceneStatusInfo:
-	"""SceneStatusInfo"""
+	"""com.rokid.cxr.client.extend.infos.SceneStatusInfo Java class to Python"""
 	aiAssistRunning: bool
 	"""Is the aiAssist running?"""
 	aiChatRunning: bool
