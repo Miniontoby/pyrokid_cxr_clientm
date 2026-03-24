@@ -51,4 +51,4 @@ Repository = "https://github.com/Miniontoby/pyrokid_cxr_clientm.git"
 
 [tool.setuptools.dynamic]
 version = {attr = "pyrokid_cxr_clientm._version.__version__"}
-readme = {file = ["README.md"]}
+readme = {file = ["README.md"], content-type = "text/markdown"}
