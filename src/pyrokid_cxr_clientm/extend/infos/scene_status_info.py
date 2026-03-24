@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/infos/SceneStatusInfo.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/infos/SceneStatusInfo.java in Python"""
 
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json, Undefined
@@ -8,36 +8,24 @@ from dataclasses_json import dataclass_json, Undefined
 class SceneStatusInfo:
 	"""com.rokid.cxr.client.extend.infos.SceneStatusInfo Java class to Python"""
 	aiAssistRunning: bool
-	"""Is the aiAssist running?"""
 	aiChatRunning: bool
-	"""Is the aiChat running?"""
-	arPictureRunning: bool
-	"""Is the arPicture running?"""
 	audioRecordRunning: bool
-	"""Is the audioRecord running?"""
-	cityGuideRunning: bool
-	"""Is the cityGuide running?"""
-	customViewRunning: bool
-	"""Is the customView running?"""
 	hasDisplay: bool
-	"""Do we have a display?"""
-	liveBroadcastRunning: bool
-	"""Are we live broadcasting?"""
-	mixRecordRunning: bool
-	"""Is the mixRecord running?"""
-	musicWordRunning: bool
-	"""Is the musicWord running? I guess lyrics display"""
 	navigationRunning: bool
-	"""Is the navigation running?"""
 	otaRunning: bool
-	"""Is the ota running?"""
 	paymentRunning: bool
-	"""Is the payment running?"""
 	phoneCallRunning: bool
-	"""Is the phoneCall running?"""
 	translateRunning: bool
-	"""Is the translate running?"""
 	videoRecordRunning: bool
-	"""Is the videoRecord running?"""
 	wordTipsRunning: bool
-	"""Is the wordTips running?"""
+	customViewRunning: bool
+	mixRecordRunning: bool
+
+	# These are NOT in the original class, but they are provided by the glasses
+	arPictureRunning: bool = False
+	brightnessRunning: bool = False
+	# Does no longer exist
+	cityGuideRunning: bool = False
+	liveBroadcastRunning: bool = False
+	musicWordRunning: bool = False
+	notesRunning: bool = False

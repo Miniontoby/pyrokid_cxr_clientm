@@ -17,6 +17,8 @@ from ...libcaps import Caps
 from ...utils import LogUtil, ValueUtil
 #from ...controllers.cxr_controller import CxrController
 
+# https://learn.microsoft.com/en-us/windows/win32/api/wlanapi/nf-wlanapi-wfdstartopensession
+
 def get_local_subnet() -> tuple[str, int]:
 	"""Get local subnet and calculate number of hosts"""
 	try:
@@ -212,12 +214,12 @@ def find_device_by_port(port: int = 8848) -> Optional[str]:
 	return None
 
 class WifiController:
-	"""com.rokid.cxr.client.extend.controller.WifiController Java class to Python"""
+	"""com.rokid.cxr.client.extend.controllers.WifiController Java class to Python"""
 	a = None # Context
 	"""mContext"""
 	b: ValueUtil.CxrStatus = None
 	"""mWifiStatus"""
-	c: WifiController.Callback = None
+	c: 'WifiController.Callback' = None
 	"""mCallback"""
 	d: str = None
 	"""mDeviceName"""
@@ -226,8 +228,11 @@ class WifiController:
 	o: bool = False
 	"""mIsConnected"""
 
+	_CxrController = None
+	"""Temporary variable, that should NOT be used, unless you have the implementation of the CxrController"""
+
 	class Callback(ABC):
-		"""WifiController.Callback Interface - Please extend this class and implement the methods"""
+		"""com.rokid.cxr.client.extend.controllers.WifiController.Callback Interface - Please extend this class and implement the methods"""
 		@abstractmethod
 		def onStatusUpdate(self, cxrStatus: ValueUtil.CxrStatus, cxrWifiErrorCode: ValueUtil.CxrWifiErrorCode) -> None: pass
 		@abstractmethod
@@ -241,7 +246,7 @@ class WifiController:
 		LogUtil.v("WifiController", "getInstance")
 		return _f.a
 
-	def init(self, context, deviceName: str, callback: WifiController.Callback):
+	def init(self, context, deviceName: str, deviceAddress: str, callback: 'WifiController.Callback'):
 		LogUtil.i("WifiController", "init")
 		try:
 			self.b = ValueUtil.CxrStatus.WIFI_INIT
@@ -249,6 +254,7 @@ class WifiController:
 			self.deinit(ValueUtil.CxrWifiErrorCode.SUCCEED)
 			self.a = context
 			self.d = deviceName
+			# self.h = deviceAddress # TODOOOOOO
 			self.c = callback
 			self.connectP2pService()
 		except Exception as exception:
@@ -271,7 +277,8 @@ class WifiController:
 				caps = Caps()
 				caps.write("Sync_Stop")
 				caps.write(strValue)
-				#cxrStatus = self.CxrController.getInstance().request(1, "Med", caps, None)
+				if self._CxrController is not None:
+					cxrStatus = self._CxrController.getInstance().request(1, "Med", caps, None)
 			else:
 				LogUtil.e("WifiController", "mCallback is null")
 			self.d = None
@@ -300,22 +307,30 @@ class WifiController:
 		LogUtil.i("WifiController", "connectToDevice")
 		hostAddress = find_device_by_port(port=8848)
 		if hostAddress:
-			callback: WifiController.Callback = self.c
-			if callback is not None:
-				callback.onAddress(hostAddress)
-			else:
-				LogUtil.e("WifiController", "mCallback is null")
-			self.updateStatus(ValueUtil.CxrStatus.WIFI_AVAILABLE, ValueUtil.CxrWifiErrorCode.SUCCEED)
+			self.n = 0
+			self.handleWifiConnectionChanged(hostAddress)
 			return
-
+		LogUtil.i("WifiController", "mRetryCount: %d", self.n)
 		i = self.n
-		if self.n < 3:
+		if i < 10: # was 3, but the original WifiController also has a timeout of 15s, so this would be fine
 			self.n = i + 1
 			sleep(1)
 			self.connectToDevice()
 		else:
 			LogUtil.e("WifiController", "mRetryCount == WIFI_MAX_RETRY_COUNT")
 			self.deinit(ValueUtil.CxrWifiErrorCode.WIFI_CONNECT_FAILED)
+
+	def handleWifiConnectionChanged(self, hostAddress: str) -> None:
+		LogUtil.i("WifiController", "handleWifiConnectionChanged")
+		if hostAddress is not None and isinstance(hostAddress, str):
+			LogUtil.i("WifiController", "address: %s", hostAddress)
+			self.n = 0
+			callback: WifiController.Callback = self.c
+			if callback is not None:
+				callback.onAddress(hostAddress)
+			else:
+				LogUtil.e("WifiController", "mCallback is null")
+			self.updateStatus(ValueUtil.CxrStatus.WIFI_AVAILABLE, ValueUtil.CxrWifiErrorCode.SUCCEED)
 
 	def connectP2pService(self) -> None:
 		LogUtil.i("WifiController", "connectP2pService")

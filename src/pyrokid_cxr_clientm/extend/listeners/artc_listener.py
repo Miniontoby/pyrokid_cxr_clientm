@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/listeners/ArtcListener.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/listeners/ArtcListener.java in Python"""
 
 from abc import ABC, abstractmethod
 
@@ -9,4 +9,4 @@ class ArtcListener(ABC):
 	@abstractmethod
 	def onArtcStop(self) -> None: pass
 	@abstractmethod
-	def onArtcFrame(self, data: bytes) -> None: pass
+	def onArtcFrame(self, bArr: bytearray, j: int) -> None: pass

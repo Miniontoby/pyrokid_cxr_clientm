@@ -1,5 +1,5 @@
 """
-com.rokid.cxr.client-m:1.0.4 - controllers/ in Python
+com.rokid.cxr.client-m:1.0.9 - controllers/ in Python
 
 controllers namespaces contains :class:`AudioController`, :class:`BluetoothController` and :class:`CxrController`
 """

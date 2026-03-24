@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/listeners/VolumeUpdateListener.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/listeners/VolumeUpdateListener.java in Python"""
 
 from abc import ABC, abstractmethod
 

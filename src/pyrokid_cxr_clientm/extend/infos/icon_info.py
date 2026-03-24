@@ -1,9 +1,9 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/infos/InfoInfo.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/infos/IconInfo.java in Python"""
 
 from dataclasses import dataclass
-from dataclasses_json import dataclass_json
+from dataclasses_json import dataclass_json, Undefined
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclass
 class IconInfo:
 	"""com.rokid.cxr.client.extend.infos.IconInfo Java class to Python
@@ -26,6 +26,4 @@ class IconInfo:
 		icon0 = IconInfo(name='icon0', data=icon0_base64)
 	"""
 	name: str
-	"""The name/identifier of the icon"""
 	data: str
-	"""The base64 string representation of the icon"""

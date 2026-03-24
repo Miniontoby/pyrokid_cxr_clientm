@@ -9,7 +9,7 @@ from requests import Session
 from threading import Thread
 
 class RetrofitService:
-	def __init__(self, baseUrl: str, headers: dict[str, str]):
+	def __init__(self, baseUrl: str, headers: dict):
 		self.baseUrl = baseUrl
 		self.s = Session()
 		self.s.headers = { **self.s.headers, **headers }
@@ -103,11 +103,13 @@ class RetrofitService:
 				return
 		return Call()
 	
-	def uploadFile(self, paramPart: tuple[str, str, str]):
+	def uploadFile(self, paramPart: tuple):
 		'''
 		@Multipart
 		@POST("/server/upload")
 		Call<ResponseBody> uploadFile(@Part MultipartBody.Part paramPart);
+
+		:param tuple[str,str,str] paramPart:
 		'''
 		(partName, filePath, dataType) = paramPart
 		this = self

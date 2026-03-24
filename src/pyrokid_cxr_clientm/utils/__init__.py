@@ -1,5 +1,5 @@
 """
-com.rokid.cxr.client-m:1.0.4 - utils/ in Python
+com.rokid.cxr.client-m:1.0.9 - utils/ in Python
 
 utils namespace contains :class:`LogUtil` and :class:`ValueUtil`
 """

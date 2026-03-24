@@ -15,17 +15,26 @@ Library supports Python 3.7+ (confirmed using `vermin`), for as far as Bleak sup
 
 The Rokid Glasses do have to be re-paired in order for this to connect.
 
-Guide below should help you. If you were to run into issues after you done all the steps according to your display,
-then you could make an issue if there isn't one for your display yet.
+Guide below should help you. If you were to run into issues after you completed all the steps,
+then you could make an issue if there isn't one yet for the problem you are facing.
+Opening issues of stuff that has already been answered will be closed without response.
 
 
 ## Current Status
 
-Currently as of v0.0.4a4, only the libcaps.so library is ported.
+Currently as of v0.0.4a5, only the libcaps.so library is ported.
+
 Other than that, also the `utils.LogUtil`, `utils.ValueUtil`, `extend.callbacks`, `extend.infos`, `extend.listeners`, `extend.version` and `extend.sync` have all been ported.
 Also `extend.controllers.FileController` is finished and working. You just need to have wifi already enabled for you to use it already,
 since I'm still working making the bluetooth connection more stable.
-The WifiController is coming soon, tho.
+
+Also the `extend.controllers.WifiController` is 'finished'. It does a port scan on your network to find the glasses its webserver.
+The original Android/Java library uses WiFi Direct P2P, but I am, as of right now, unable to make that work crossplatform.
+To add to that: I am also not even able to just do it for Windows.
+And since a port scan does work on WiFi networks without a firewall blocking connections to other IP's on the network, I think this is the best for now.
+The only downside is that your glasses must have been connected to the network during a firmware upgrade, else it won't try to connect.
+The reason why Hi Rokid is able to connect to the glasses no matter what internet you're connected to or if you're not even connected to wifi,
+is because of WiFi direct, where the glasses make a wifi 'hotspot' which the phone connects to and then talks to the glasses.
 
 I also added `customview` to the library which does NOT exist in the java SDK, but does allow you to make sure your CustomViews are valid JSON.
 
@@ -54,7 +63,7 @@ But that doesn't stop me being transparent about the dependencies, so here's the
 - soundfile: For doing stuff with ogg files
 - scipy: For resampling ogg files from 48k to 16k
 
-You can safely ignore the huggingface warning.
+If you see a warning about huggingface when running the code, you can safely ignore the warning.
 
 
 ## API/Example
@@ -70,7 +79,7 @@ from pyrokid_cxr_clientm.extend.infos import *
 from pyrokid_cxr_clientm.extend.listeners import *
 
 # Decode bytes to a Caps object
-bytes_variable = b'\x00\x00\x00\x99\x05\x05SSSuu$xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\x11MA:C0:AD:DR:ES:SSTxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==\x01\x01'
+bytes_variable = b'\x00\x00\x00\x99\x05\x05SSSuu$xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\x11MA:C0:AD:DR:E5:50Txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==\x01\x01'
 caps = Caps.fromBytes(bytes_variable)
 print(caps)
 print('socketUuid:', caps.at(0).getString())
@@ -134,7 +143,7 @@ To upload apk's to the glasses to sideload the apk, you can use this snippet to 
 from pyrokid_cxr_clientm.utils import ValueUtil
 from pyrokid_cxr_clientm.extend.callbacks import ApkStatusCallback
 from pyrokid_cxr_clientm.extend.controllers import FileController, WifiController
-import os, logging
+import logging
 
 logging.basicConfig(level=logging.INFO)
 apkPath = 'org.fdroid.fdroid_1023050.apk' # path to the .apk on your computer

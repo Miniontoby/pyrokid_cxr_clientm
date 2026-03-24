@@ -295,7 +295,7 @@ class _mDownloadFileCall:
 							LogUtil.w("FileController", "file not existed %s", str4)
 						try:
 							with open(str4, 'wb') as f:
-								for chunk in responseBody.iter_content(chunk_size=8192):
+								for chunk in responseBody.iter_content(chunk_size=8192**16):
 									if not fileController.h:
 										break
 									f.write(chunk)

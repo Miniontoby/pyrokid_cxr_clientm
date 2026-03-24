@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/listeners/SceneStatusUpdateListener.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/listeners/SceneStatusUpdateListener.java in Python"""
 
 from abc import ABC, abstractmethod
 from ..infos import SceneStatusInfo

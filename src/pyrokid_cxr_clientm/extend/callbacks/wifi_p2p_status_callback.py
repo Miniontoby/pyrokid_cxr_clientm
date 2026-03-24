@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/callbacks/WifiP2PStatusCallback.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/callbacks/WifiP2PStatusCallback.java in Python"""
 
 from abc import ABC, abstractmethod
 from ...utils import ValueUtil
@@ -10,4 +10,6 @@ class WifiP2PStatusCallback(ABC):
 	@abstractmethod
 	def onDisconnected(self) -> None: pass
 	@abstractmethod
-	def onFailed(self, errorCode: ValueUtil.CxrWifiErrorCode) -> None: pass
+	def onFailed(self, cxrWifiErrorCode: ValueUtil.CxrWifiErrorCode) -> None: pass
+	@abstractmethod
+	def onP2pDeviceAvailable(self, deviceName: str, deviceAddress: str, primaryDeviceType: str) -> None: pass

@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/callbacks/PhotoResultCallback.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/callbacks/PhotoResultCallback.java in Python"""
 
 from abc import ABC, abstractmethod
 from ...utils import ValueUtil
@@ -6,9 +6,9 @@ from ...utils import ValueUtil
 class PhotoResultCallback(ABC):
 	"""com.rokid.cxr.client.extend.callbacks.PhotoResultCallback Java interface to Python - Please extend this class and implement the methods"""
 	@abstractmethod
-	def onPhotoResult(self, status: ValueUtil.CxrStatus, photo: bytearray) -> None:
+	def onPhotoResult(self, cxrStatus: ValueUtil.CxrStatus, bArr: bytearray) -> None:
 		"""
-		:param ValueUtil.CxrStatus status: Photo take status
-		:param bytes photo: WebP photo data bytearray
+		:param ValueUtil.CxrStatus cxrStatus: Photo take status
+		:param bytearray bArr: WebP photo data bytearray
 		"""
 		pass

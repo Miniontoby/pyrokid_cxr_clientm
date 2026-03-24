@@ -1,16 +1,13 @@
-"""
-com.rokid.cxr.client-m:1.0.4 - utils/ValueUtil.java in Python
-
-ValueUtil class contains all the Cxr Enums
-"""
+"""com.rokid.cxr.client-m:1.0.9 - utils/ValueUtil.java in Python"""
 
 from enum import IntEnum
 try:
+	# novermin
 	from enum import StrEnum # python 3.11+
 except:
 	# python <3.11
 	from enum import Enum # python <3.11
-	class StrEnum(str, Enum): pass	
+	class StrEnum(str, Enum): pass
 
 class ValueUtil:
 	"""com.rokid.cxr.client.utils.ValueUtil Java class to Python"""
@@ -18,11 +15,11 @@ class ValueUtil:
 	class CxrBluetoothErrorCode(IntEnum):
 		"""com.rokid.cxr.client.utils.ValueUtil.CxrBluetoothErrorCode Java enum to Python"""
 		SUCCEED = 0
-		PARAM_INVALID = 1
+		PARAM_INVALID = -1
 		BLE_CONNECT_FAILED = -2
 		SOCKET_CONNECT_FAILED = -3
 		SN_CHECK_FAILED = -4
-		UNKNOWN = -1
+		UNKNOWN = -99
 		
 		def getErrorCode(self) -> int:
 			return self.value
@@ -43,9 +40,9 @@ class ValueUtil:
 
 	class CxrNotifyType(IntEnum):
 		"""com.rokid.cxr.client.utils.ValueUtil.CxrNotifyType Java enum to Python"""
-		UNKNOWN = 0
-		REQUEST = 1
-		NOTIFY = 2
+		UNKNOWN = -1
+		REQUEST = 0
+		NOTIFY = 1
 		
 		def getType(self) -> int:
 			return self.value
@@ -67,28 +64,30 @@ class ValueUtil:
 		
 		def getSceneId(self) -> str:
 			return self.value
-	
+
+	# BUG IN JADX, "/* JADX WARN: Unknown enum class pattern. Please report as an issue! */"
 	class CxrSendErrorCode(IntEnum):
 		"""com.rokid.cxr.client.utils.ValueUtil.CxrSendErrorCode Java enum to Python"""
-		UNKNOWN = -1
+		UNKNOWN = -99
 		
 		def getErrorCode(self) -> int:
 			return self.value
 	
 	class CxrStatus(IntEnum):
-		"""com.rokid.cxr.client.utils.ValueUtil.CxrStatus Java enum to Python"""
+		"""com.rokid.cxr.client.utils.ValueUtil.CxrStatus Java enum to Python.
+		Note: I did add 10 to each group, so it does not think they're duplicates, but 1.0.9 actually only has 0, -1 and -2 as values..."""
 		BLUETOOTH_AVAILABLE = 0
-		BLUETOOTH_UNAVAILABLE = 1
+		BLUETOOTH_UNAVAILABLE = -1
 		BLUETOOTH_INIT = -2
-		WIFI_AVAILABLE = 2
-		WIFI_UNAVAILABLE = 3
-		WIFI_INIT = -2
-		REQUEST_SUCCEED = 4
-		REQUEST_FAILED = 5
-		REQUEST_WAITING = -2
-		RESPONSE_SUCCEED = 6
-		RESPONSE_INVALID = 7
-		RESPONSE_TIMEOUT = -2
+		WIFI_AVAILABLE = 10
+		WIFI_UNAVAILABLE = -11
+		WIFI_INIT = -12
+		REQUEST_SUCCEED = 20
+		REQUEST_FAILED = -21
+		REQUEST_WAITING = -22
+		RESPONSE_SUCCEED = 30
+		RESPONSE_INVALID = -31
+		RESPONSE_TIMEOUT = -32
 		
 		def getStatus(self) -> int:
 			return self.value
@@ -104,9 +103,11 @@ class ValueUtil:
 	class CxrWifiErrorCode(IntEnum):
 		"""com.rokid.cxr.client.utils.ValueUtil.CxrWifiErrorCode Java enum to Python"""
 		SUCCEED = 0
-		WIFI_DISABLED = 1
+		WIFI_DISABLED = -1
 		WIFI_CONNECT_FAILED = -2
-		UNKNOWN = -1
+		UNKNOWN = -99
 		
 		def getErrorCode(self) -> int:
 			return self.value
+
+__all__ = ['ValueUtil']

@@ -1,4 +1,5 @@
-"""com.rokid.cxr.client-m library for Python
+"""
+com.rokid.cxr.client-m library for Python
 
 A python port of the com.rokid.cxr.client-m Java library.
 
@@ -11,4 +12,5 @@ __author__ = 'Miniontoby'
 
 from .libcaps import Caps
 from .cxr_socket_protocol import CXRSocketProtocol, PacketTypeIds
+from .build_config import BuildConfig
 from . import controllers, customview, extend, utils

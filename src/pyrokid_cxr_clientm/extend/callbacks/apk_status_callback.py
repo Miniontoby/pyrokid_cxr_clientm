@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/callbacks/ApkStatusCallback.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/callbacks/ApkStatusCallback.java in Python"""
 
 from abc import ABC, abstractmethod
 
@@ -20,3 +20,9 @@ class ApkStatusCallback(ABC):
 	def onOpenAppSucceed(self) -> None: pass
 	@abstractmethod
 	def onOpenAppFailed(self) -> None: pass
+	@abstractmethod
+	def onStopAppResult(self, success: bool) -> None: pass
+	@abstractmethod
+	def onGlassAppResume(self, packageName: str) -> None: pass
+	@abstractmethod
+	def onQueryAppResult(self, packageName: str, isInstalled: bool) -> None: pass

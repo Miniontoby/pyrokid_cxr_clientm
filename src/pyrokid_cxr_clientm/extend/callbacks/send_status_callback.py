@@ -1,4 +1,4 @@
-"""com.rokid.cxr.client-m:1.0.4 - extend/callbacks/SendStatusCallback.java in Python"""
+"""com.rokid.cxr.client-m:1.0.9 - extend/callbacks/SendStatusCallback.java in Python"""
 
 from abc import ABC, abstractmethod
 from ...utils import ValueUtil
@@ -8,4 +8,4 @@ class SendStatusCallback(ABC):
 	@abstractmethod
 	def onSendSucceed(self) -> None: pass
 	@abstractmethod
-	def onSendFailed(self, errorCode: ValueUtil.CxrSendErrorCode) -> None: pass
+	def onSendFailed(self, cxrSendErrorCode: ValueUtil.CxrSendErrorCode) -> None: pass
